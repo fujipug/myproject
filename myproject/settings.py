@@ -70,9 +70,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'authlang',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'USER': 'lane',
+        'PASSWORD': '9meowBianca',
+        #'HOST': 'localhost',
     }
 }
 
