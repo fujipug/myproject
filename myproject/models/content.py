@@ -9,14 +9,14 @@ class Content(models.Model):
     first_name = models.CharField(max_length = 200)
     last_name = models.CharField(max_length = 200)
     title = models.CharField(max_length = 200)
-    description = models.CharField(max_length = 200)
+    transcription = models.TextField()
     vocab = models.CharField(max_length = 200, blank = True, null = True)
     difficulty = models.ForeignKey('Difficulty')
     country = models.ForeignKey('Country')
     # images = models.CharField(max_length = 200, blank = True, null = True)
     # video = models.URLField(max_length = 200)
     video = EmbedVideoField()  # same like models.URLField()
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(blank = True, null = True) #Category)
 
     def __unicode__(self):
         return str(self.pk) + self.title
