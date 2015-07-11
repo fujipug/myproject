@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from myproject.views.views import ContentList, ContentDetail, DifficultyList, DifficultyDetail, CountryList, CountryDetail, CategoryTypeList, CategoryTypeDetail, CategoryList, CategoryDetail
 from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = patterns('',
@@ -35,3 +36,5 @@ urlpatterns = patterns('',
                         url(r'^(?P<category_type_slug>[\w-]+)/(?P<category_slug>[\w-]+)/$',
                             'myproject.views.views.content_list_by_category'),
                         )
+
+urlpatterns += staticfiles_urlpatterns()
