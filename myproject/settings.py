@@ -70,8 +70,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'language',
-        'USER': 'kschairer',
-        'PASSWORD': 'Narnia2025?',
+        'USER': 'lf237',
+        'PASSWORD': 'lf237',
         #'HOST': 'kschairer.webfactional.com',
     }
 }
