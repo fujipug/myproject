@@ -72,10 +72,11 @@ DATABASES = {
         'NAME': 'authlang',
         'USER': 'lanef',
         'PASSWORD': '9meowBianca',
-        'HOST': 'kschairer.webfactional.com'
+        'HOST': 'kschairer.webfactional.com',
     }
 }
 
+ALLOWED_HOSTS = ['http://kschairer.webfactional.com']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
