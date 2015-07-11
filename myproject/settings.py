@@ -69,10 +69,10 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'authlang',
-        'USER': 'lanef',
-        'PASSWORD': '9meowBianca',
-        'HOST': 'kschairer.webfactional.com',
+        'NAME': 'language',
+        'USER': 'lf237',
+        'PASSWORD': 'lf237',
+        #'HOST': 'kschairer.webfactional.com',
     }
 }
 
