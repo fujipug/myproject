@@ -16,7 +16,7 @@ class Content(models.Model):
     # images = models.CharField(max_length = 200, blank = True, null = True)
     # video = models.URLField(max_length = 200)
     video = EmbedVideoField()  # same like models.URLField()
-    categories = models.ManyToManyField(blank = True, null = True) #Category)
+    #categories = models.ManyToManyField(Category)
 
     def __unicode__(self):
         return str(self.pk) + self.title
