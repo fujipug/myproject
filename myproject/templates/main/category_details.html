@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% block nav %}
+    {% include "main/base/nav.html" %}
+{% endblock %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class = "container">
+	<h1>{{ category }}</h1>
+	<div class = ".col-md-6">
+	<!--List of themes for the beginner list-->
+    {% for p in subcategories %}
+		<a href = "/{{ category.slug }}/{{ p.slug }}"><h4>{{ p }}</h4></a>
+    {% endfor %}
+	</div>
+
+{% endblock %}
+{% block footer %} {% endblock %}

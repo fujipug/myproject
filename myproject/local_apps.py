@@ -1,0 +1,1 @@
+LOCAL_APPS = ['myproject']

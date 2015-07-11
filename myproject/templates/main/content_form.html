@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+{% block nav %}
+    {% include "main/base/admin_nav.html" %}
+{% endblock %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<div class = "col-md-4">
+		<form class="form-horizontal" method="post" action = "/categoryform/">
+	        <div class="form-group">
+				<div class = "container">
+					{% csrf_token %}
+					{{ form.as_p }}
+	           	 	<input class="btn btn-default btn-lg" type="submit" value="Submit">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class = "col-md-8">
+		<table class = "table" style="width:100%">
+	    <tr>
+	      <td>First</td>
+	      <td>Last</td>
+	      <td>Title</td>
+	      <td>Description</td>
+	      <td>Vocab</td>
+	      <td>Difficulty</td>
+	      <td>Country</td>
+	      <td>Video</td>
+	    </tr>
+	    {% for content in contents %}
+	    <tr>
+	      <td>{{ content.first_name }}</td>
+	      <td>{{ content.last_name }}</td>
+	      <td>{{ content.title }}</td>
+	      <td>{{ content.description }}</td>
+	      <td>{{ content.vocab }}</td>
+	      <td>{{ content.difficulty }}</td>
+	      <td>{{ content.country }}</td>
+	      <td>{{ content.video }}</td>
+	    </tr>
+	    {% endfor %}
+		</table> 
+	</div>
+{% endblock %}
+{% block footer %} {% endblock %}

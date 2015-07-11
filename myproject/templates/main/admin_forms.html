@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+{% block nav %}
+    {% include "main/base/admin_nav.html" %}
+{% endblock %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <div class = "container">
+  	<h2>Forms</h2>
+  	<div class = "row">
+  		<div class = "col-md-4">
+			<a href = "/categoryform/"><h3>Category Form</h3></a>
+			<p>A category is the field that falls under a category type. For example, </p>
+		</div>
+		<div class = "col-md-4">
+			<a href = "/categorytypeform/"><h3>Category Type Form</h3></a>
+			<p>This form is to add, delete or edit a category type. A category type is what the user chooses to learn by (EX: Nivel, Pais, Gramatica, etc.).</p>
+		</div>
+		<div class = "col-md-4">
+			<a href = "/contentcategoryform/"><h3>Content Category Form</h3></a>
+		</div>
+	</div>
+	<div class = "row">
+		<div class = "col-md-4">
+			<a href = "/contentform/"><h3>Content Form</h3></a>
+			<p>This form is to add, delete or edit content. Content is what the user sees once they have selected a video to watch. All the learning material goes here (EX: Video, transcription, title, name, etc.).</p>
+		</div>
+		<div class = "col-md-4">
+			<a href = "/countryform/"><h3>Country Form</h3></a>
+			<p>This form is to add, delete or edit a country.(EX: Costa Rica, Colombia, Spain, etc.).</p>
+		</div>
+		<div class = "col-md-4">
+			<a href = "/difficultyform/"><h3>Difficulty Form</h3></a>
+			<p>This form is to add, delete or edit a difficulty.(EX: Easy, Hard, Expert, etc.).</p>
+		</div>
+	</div>	
+  </div>		
+{% endblock %}
+{% block footer %} {% endblock %}

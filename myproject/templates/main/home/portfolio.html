@@ -1,0 +1,78 @@
+<!-- Portfolio Grid Section -->
+<section id="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Categories</h2>
+                <hr class="star-primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 portfolio-item">
+                <a href="#difficultyPortfolioModal" class="portfolio-link" data-toggle="modal">
+                    <!--<div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>-->
+                    <h2>Difficulty</h2>
+                    <!--<img src="img/portfolio/cabin.png" class="img-responsive" alt="Nivel">-->
+                </a>
+            </div>
+            <div class="col-sm-4 portfolio-item">
+                <a href="#countryPortfolioModal" class="portfolio-link" data-toggle="modal">
+                    <!--<div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>-->
+                    <h2>Country</h2>
+                    <!--<img src="img/portfolio/cabin.png" class="img-responsive" alt="Nivel">-->
+                </a>
+            </div>
+            {% for p in category_types %}
+            <div class="col-sm-4 portfolio-item">
+                <a href="#categoryPortfolioModal{{ p.id }}" class="portfolio-link" data-toggle="modal">
+                    <!--<div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>-->
+                    <h2>{{ p.category_type }}</h2>
+                    <!--<img src="img/portfolio/cabin.png" class="img-responsive" alt="Nivel">-->
+                </a>
+            </div>
+            {% endfor %}
+            <div class="col-sm-4 portfolio-item">
+                <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="img/portfolio/game.png" class="img-responsive" alt="">
+                </a>
+            </div>
+            <div class="col-sm-4 portfolio-item">
+                <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="img/portfolio/safe.png" class="img-responsive" alt="">
+                </a>
+            </div>
+            <div class="col-sm-4 portfolio-item">
+                <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

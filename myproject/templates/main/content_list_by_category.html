@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+{% block nav %}
+    {% include "main/base/nav.html" %}
+{% endblock %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<!--list of video thumbnails and short descriptions in groups of 4-->
+<div class = "container">
+    <p>
+        Category: {{ category }} | 
+        {% if category_type.id != Null %}
+            <a href = "/#categoryPortfolioModal{{ category_type.id }}">Type: {{ category_type }}</a>
+        {% elif category_type == "Difficulty" %}
+            <a href = "/#difficultyPortfolioModal">Type: Difficulty</a>
+        {% else %}
+            <a href = "/#countryPortfolioModal">Type: Country</a>
+        {% endif %}
+    </p>
+    <div class = "row">
+    {% load embed_video_tags %}
+    {% for p in contents %}
+    {% if forloop.counter0|divisibleby:"4" and forloop.counter0 > 0 %}
+    </div>
+    <div class = "row">
+    {% endif %}
+       <div class = "col-md-3">
+            <a href = "/contents/{{ p.id }}">
+                <p> title: {{ p.title }} | {{ p.difficulty }} | {{ p.country }}</p>
+                {% video p.video as video %}
+                    <img src = "{{ video.thumbnail }}" class = "img-thumbnail" alt = "Cinque Terre" width = "100%" height = "100%">
+                {% endvideo %}
+            </a>
+       </div>
+    {% empty %}
+    <p>Sorry, No Videos :0<p>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

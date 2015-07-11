@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+{% block nav %}
+    {% include "main/base/admin_nav.html" %}
+{% endblock %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<div class = "col-md-6">
+		<form class="form-horizontal" method="post" action = "/categoryform/">
+	        <div class="form-group">
+				<div class = "container">
+					{% csrf_token %}
+					{{ form.as_p }}
+	           	 	<input class="btn btn-default btn-lg" type="submit" value="Submit">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class = "col-md-6">
+		<table class = "table" style="width:100%">
+	    <tr>
+	      <td>Difficulty</td>
+	    </tr>
+	    {% for difficulty in difficulties %}
+	    <tr>
+	      <td>{{ difficulty.difficulty }}</td>
+	    </tr>
+	    {% endfor %}
+		</table> 
+	</div>
+{% endblock %}
+{% block footer %} {% endblock %}

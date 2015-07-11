@@ -1,0 +1,74 @@
+{% extends 'main/base.html' %}
+{% load embed_video_tags %}
+{% block nav %}
+    {% include "main/base/nav.html" %}
+{% endblock %}
+{% block head %}
+{% endblock %}
+
+
+{% block content %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div id = "search_table" class = "container">
+    <p> Loading contents...</p>
+</div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block javascript_scripts %}
+{% verbatim %}
+<script type="text/javascript">
+    function loadData(title) {
+        if title.equals("") == false {
+            title_query="&title=" + title
+        }
+        $.getJSON("/data/contents/?format=json", function (json) {
+            var template = $('#template').html();
+            Mustache.parse(template);
+            var data = {
+                array: json,
+                "dateString": function () {
+                    return function (text, render) {
+                      return new Date(render(text)).toString();
+                    }
+                }
+            };
+            var rendered = Mustache.render(template, data);
+                
+            $('#search_table').html(rendered);
+            //setTimeout(loadData2(category_type), 5000);
+        });
+    }
+    $(document).ready(function () {
+        loadData("");
+    });
+</script>
+<script id="template" type="x-tmpl-mustache">
+    <table class = "table" style="width:100%">
+        <!--<caption>Stuff</caption>-->
+        <tr>
+            <td>Nombre</td>
+            <td>Apellido</td>
+            <td>Pais</td>
+            <td>Titulo</td>
+        </tr>
+        {{ #array }}
+        <tr>
+            <td>{{ first_name }}</td>
+            <td>{{ last_name }}</td>
+            <td>{{ country }}</td>
+            <td>{{ title }}</td>
+        </tr>
+        {{ /array }}
+    </table>  
+</script>
+{% endverbatim %}
+{% endblock %}

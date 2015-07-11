@@ -1,0 +1,151 @@
+{% extends 'main/base.html' %}
+
+{% block nav %}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% if user.is_authenticated %}
+                <a class="navbar-brand" style = "color:#18bc9c" href = "/">Hola, {{ user.username }} (admin)</a>
+                <a href="/adminforms/">Forms</a>
+                <a style = "color:#FF9999" href="/logout/">Logout</a>
+            {% else %}
+                <a class="navbar-brand" href="#page-top">Authentic Spanish Language</a>
+            {% endif %}
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#portfolio">Categories</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">Index</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+{% endblock %}
+
+{% block head %}
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!--<img class="img-responsive" src="img/profile.png" alt="">-->
+                <div class="intro-text">
+                    <span class="name">¡BIENVENIDOS!</span>
+                    <hr class="star-light">
+                    <span class="skills">Aprende como la gente habla naturalmente (Learn how people naturally speak)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+{% include "main/home/portfolio.html" with category_types=category_types %}
+{% include "main/home/about.html" %}
+{% include "main/home/contact.html" %}
+
+<!-- Portfolio Modals -->
+{% include "main/home/portfolio_modals.html" with category_types=category_types %}
+{% endblock %}
+
+{% block footer %}
+{% include "main/home/footer.html" %}
+{% endblock %}
+
+{% block javascript_scripts %}
+    {% verbatim %}
+    <script type="text/javascript">
+        function loadDifficultyData(category_type) {
+            $.getJSON("/data/difficulties/?format=json", function (json) {
+                var template = $('#difficulty_template').html();
+                Mustache.parse(template);
+                var data = {
+                    array: json,
+                    "dateString": function () {
+                        return function (text, render) {
+                          return new Date(render(text)).toString();
+                        }
+                    }
+                };
+                var rendered = Mustache.render(template, data);
+                $('#difficulty_portfolio_modals_container').html(rendered);
+            });
+        }
+        function loadCountryData() {
+            $.getJSON("/data/countries/?format=json", function (json) {
+                var template = $('#country_template').html();
+                Mustache.parse(template);
+                var data = {
+                    array: json,
+                    "dateString": function () {
+                        return function (text, render) {
+                          return new Date(render(text)).toString();
+                        }
+                    }
+                };
+                var rendered = Mustache.render(template, data);
+                $('#country_portfolio_modals_container').html(rendered);
+            });
+        }
+        function loadCategoryData(category_type) {
+            $.getJSON("/data/categories/?format=json" + "&category_type=" + category_type, function (json) {
+                var template = $('#category_template').html();
+                Mustache.parse(template);
+                var data = {
+                    array: json,
+                    "dateString": function () {
+                        return function (text, render) {
+                          return new Date(render(text)).toString();
+                        }
+                    }
+                };
+                var rendered = Mustache.render(template, data);
+                $('#category_portfolio_modals_container' + category_type).html(rendered);
+            });
+        }
+        $(document).ready(function () {
+            loadDifficultyData();
+            loadCountryData();
+            $(".category_portfolio_modals_container").each(function() {
+                loadCategoryData(this.id.replace(/\D/g,''));
+            });
+        });
+    </script>
+    <script id="difficulty_template" type="x-tmpl-mustache">
+        {{ #array }}
+        <a href = "/difficulty/{{ slug }}"><h3>{{ difficulty }}</h3></a>
+        {{ /array }}
+    </script>
+    <script id="country_template" type="x-tmpl-mustache">
+        {{ #array }}
+        <a href = "/country/{{ slug }}"><h3>{{ country }}</h3></a>
+        {{ /array }}
+    </script>
+    <script id="category_template" type="x-tmpl-mustache">
+        {{ #array }}
+        <a href = "{{ category_type.slug }}/{{ slug }}"><h3>{{ category }}</h3></a>
+        {{ /array }}
+    </script>
+    {% endverbatim %}
+{% endblock %}
