@@ -9,7 +9,7 @@ class Content(models.Model):
     first_name = models.CharField(max_length = 200)
     last_name = models.CharField(max_length = 200)
     title = models.CharField(max_length = 200)
-    transcription = models.TextField()
+    description = models.TextField()
     vocab = models.CharField(max_length = 200, blank = True, null = True)
     difficulty = models.ForeignKey('Difficulty')
     country = models.ForeignKey('Country')
