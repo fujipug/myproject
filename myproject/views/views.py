@@ -137,7 +137,7 @@ class CategoryList(generics.ListCreateAPIView):
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-#End Serializer Stuff
+#End Serializer Stuff.
 
 
 def home(request):
