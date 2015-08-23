@@ -1,5 +1,5 @@
 from django.shortcuts import render
-#from django.template.defaultfilters import slugify
+from django.template.defaultfilters import slugify
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
