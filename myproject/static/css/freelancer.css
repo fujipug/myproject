@@ -8,6 +8,16 @@ body {
     overflow-x: hidden;
 }
 
+.promo-vid {
+    height: 500px;
+    width: 100%;
+}
+
+.location-container {
+    height: 150;
+    width: 100%;
+}
+
 .table {
     margin:0px;padding:0px;
     width:100%;

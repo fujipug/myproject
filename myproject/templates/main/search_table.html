@@ -24,14 +24,31 @@
 {% endblock %}
 {% block footer %}{% endblock %}
 {% block javascript_scripts %}
-{% verbatim %}
 <script type="text/javascript">
-    function loadData(title) {
-        if title.equals("") == false {
-            title_query="&title=" + title
+    function loadData(first_name, last_name, difficulty, country, title, categories) {
+        uri_params = "";
+        if (first_name.length > 0) {
+            uri_params += "&first_name=" + encodeURI(first_name);
+
         }
-        $.getJSON("/data/contents/?format=json", function (json) {
-            var template = $('#template').html();
+        if (last_name.length > 0) {
+            uri_params += "&last_name=" + encodeURI(last_name);
+        }
+        if (difficulty.length > 0) {
+            uri_params += "&difficulty=" + encodeURI(difficulty);
+        }
+        if(country.length > 0) {
+            uri_params += "&country=" + encodeURI(country);
+        }
+        if (title.length > 0) {
+            uri_params += "&title=" + encodeURI(title);
+        }
+        if(categories.length > 0) {
+            uri_params += "&categories=" + encodeURI(categories);
+        }
+        alert(uri_params);
+        $.getJSON("/data/contents/?format=json&" + uri_params, function (json) {
+            var template = $('#table_template').html();
             Mustache.parse(template);
             var data = {
                 array: json,
@@ -44,15 +61,15 @@
             var rendered = Mustache.render(template, data);
                 
             $('#search_table').html(rendered);
-            //setTimeout(loadData2(category_type), 5000);
         });
     }
     $(document).ready(function () {
-        loadData("");
+        loadData("","","","","","other");
     });
 </script>
-<script id="template" type="x-tmpl-mustache">
-    <table class = "table" style="width:100%">
+{% verbatim %}
+<script id="table_template" type="x-tmpl-mustache">
+    <table class = "table" style = "width:100%">
         <!--<caption>Stuff</caption>-->
         <tr>
             <td>Nombre</td>
@@ -64,7 +81,7 @@
         <tr>
             <td>{{ first_name }}</td>
             <td>{{ last_name }}</td>
-            <td>{{ country }}</td>
+            <td>{{ country.country }}</td>
             <td>{{ title }}</td>
         </tr>
         {{ /array }}
